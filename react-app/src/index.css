@@ -11,9 +11,16 @@ body{
     border-radius: 10px;
     color: white;
 }
-.weather-details{
+.container-weather .desk{
     display: flex;
 }
-.weather-details .desk{
-    margin: 10px 20px;
+.container-weather .desk .in{
+    margin: 30px;
+}
+.container-weather .forecast{
+}
+.forecast-days{
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
