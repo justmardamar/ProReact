@@ -1,6 +1,11 @@
 import React,{useState,useEffect} from "react";
 
 export default function Film(){
+
+    const [listfilm,setFilm] = useState([])
+    const [movies,setMovies] = useState([])
+    const [search,setSearch] = useState('')
+
     const options = {
         method: 'GET',
         headers: {
@@ -9,8 +14,48 @@ export default function Film(){
         }
     };
 
-fetch('https://api.themoviedb.org/3/authentication', options)
-  .then(res => res.json())
-  .then(res => console.log(res))
-  .catch(err => console.error(err));
+    useEffect(() => {
+        const getFilm = async () => {
+            if(search == ''){
+                const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,options)
+                const data = await response.json()
+                console.log(data)
+                setFilm(data)
+                setMovies(data.results)
+            }else{
+                const responseSearch = await fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=1`,options)
+                const datasearch = await responseSearch.json()
+                console.log(datasearch)
+
+                setMovies(datasearch.results)
+            }
+        }
+        getFilm()
+    },[search])
+
+    function searchInput(event){
+        setSearch(event.target.value)
+    }
+
+    return(
+        <>
+            <h1>Halaman {listfilm.page}</h1>
+            <input type="text" onChange={searchInput} />
+            <div className="container-film">
+                    {movies?.map(movie => (
+                        <div className="list-film" key={movie.id}>
+                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt="" />
+                            <h1>{movie.title}</h1>
+                            <p>Popularitas : {Math.round(movie.popularity)}</p>
+                            <h2>Sinopsis</h2>
+                            <div className="sinopsis">
+                                <p>{movie.overview}</p>
+                            </div>
+                            <p>{new Date(movie.release_date).toLocaleDateString('id-ID',{year : 'numeric',month : 'long',day:'2-digit'})}</p>
+                        </div>
+                    ))}
+            </div>
+        </>
+    )
+
 }

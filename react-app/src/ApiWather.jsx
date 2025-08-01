@@ -10,7 +10,7 @@ export default function ApiWather(){
 
 
     useEffect(() => {
-        const fetchWeather = async (nama) => {
+        const fetchWeather = async () => {
             try{
     
                 const url = `https://api.openweathermap.org/data/2.5/weather?q=${namaKota}&appid=${ApiKey}&units=imperial`
