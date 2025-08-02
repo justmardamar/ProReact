@@ -5,6 +5,9 @@ export default function Film(){
     const [listfilm,setFilm] = useState([])
     const [movies,setMovies] = useState([])
     const [search,setSearch] = useState('')
+    const [page,setPage] = useState(1)
+
+    const pages = [1,2,3,4,5,6,7,8,9]
 
     const options = {
         method: 'GET',
@@ -33,14 +36,27 @@ export default function Film(){
         getFilm()
     },[search])
 
+    useEffect(() => {
+        const getPage = async (page) => {
+            const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,options)
+                const data = await response.json()
+                console.log(data)
+                setFilm(data)
+                setMovies(data.results)
+        }
+        getPage(page)
+    },[page])
+
     function searchInput(event){
         setSearch(event.target.value)
     }
 
     return(
         <>
-            <h1>Halaman {listfilm.page}</h1>
-            <input type="text" onChange={searchInput} />
+            <div className="content">
+                <h1>Halaman {listfilm.page}</h1>
+                <input type="text" onChange={searchInput}/>
+            </div>
             <div className="container-film">
                     {movies?.map(movie => (
                         <div className="list-film" key={movie.id}>
@@ -54,6 +70,11 @@ export default function Film(){
                             <p>{new Date(movie.release_date).toLocaleDateString('id-ID',{year : 'numeric',month : 'long',day:'2-digit'})}</p>
                         </div>
                     ))}
+            </div>
+            <div className="list">
+                {pages.map((page,index) => (
+                    <li key={index} onClick={() => setPage(page)}>{page}</li>
+                ))}
             </div>
         </>
     )
