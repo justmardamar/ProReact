@@ -26,6 +26,21 @@ export default function Detailfilm(){
     },[id])
 
     return(
-        <p>Halo {id}</p>
+        <>
+            <a href="/" className='tombol'>Kembali</a>
+            <div className="container-detail">
+                <h1>{movieId?.title}</h1>
+                <img src={`https://image.tmdb.org/t/p/original/${movieId?.belongs_to_collection.poster_path}`} alt="" />
+                <p>Popularitas : {Math.round(movieId?.popularity)}</p>
+                <h2>Genre</h2>
+                <div className="genres">
+                    {movieId?.genres.map((value) => {
+                        return (<li key={value.id}>{value.name}</li>)
+                    })}
+                </div>
+                <h2>Sinopsis</h2>
+                <p>{movieId?.overview}</p>
+            </div>
+        </>
     )
 }

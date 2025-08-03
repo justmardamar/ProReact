@@ -1,5 +1,4 @@
 body{
-    display: flex;
     margin: 0;
     background-color: rgb(92, 92, 247);
 }
@@ -74,3 +73,34 @@ body{
     padding: 1rem;
     color: white;
 }
+
+.tombol{
+    padding: 5px;
+    background-color: white;
+}
+
+.container-detail{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.container-detail img{
+    width: 50vh;
+    height: 70vh;
+}
+.container-detail p{
+    padding: 5vh;
+}
+.container-detail .genres{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+.container-detail .genres li{
+    padding: 10px;
+}
+
+
