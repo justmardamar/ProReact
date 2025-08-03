@@ -48,6 +48,14 @@ body{
     width: 15rem;
     height: 20rem;
 }
+
+.list-film a{
+    padding: 10px;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid grey;
+}
+
 .content{
     text-align: center;
 }

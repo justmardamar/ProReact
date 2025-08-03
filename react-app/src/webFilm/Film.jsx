@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import Detailfilm from "./detailfilm";
 
 export default function Film(){
 
@@ -51,6 +52,10 @@ export default function Film(){
         setSearch(event.target.value)
     }
 
+    function detailDirect(){
+        <Detailfilm/>
+    }
+
     return(
         <>
             <div className="content">
@@ -68,6 +73,7 @@ export default function Film(){
                                 <p>{movie.overview}</p>
                             </div>
                             <p>{new Date(movie.release_date).toLocaleDateString('id-ID',{year : 'numeric',month : 'long',day:'2-digit'})}</p>
+                            <a href={`/movie/${movie.id}`}>Detail</a>
                         </div>
                     ))}
             </div>
