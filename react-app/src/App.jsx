@@ -1,7 +1,8 @@
 import ApiWeather from './ApiWather.jsx'
 import Film from './webFilm/Film.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Detailfilm from './webFilm/Detailfilm.jsx';
+import Detailfilm from './webFilm/Detailfilm2.jsx';
+
 
 function App() {
 

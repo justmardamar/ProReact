@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import Detailfilm from "./detailfilm";
+import CardFilm from "./CardFilm";
 
 export default function Film(){
 
@@ -52,9 +52,6 @@ export default function Film(){
         setSearch(event.target.value)
     }
 
-    function detailDirect(){
-        <Detailfilm/>
-    }
 
     return(
         <>
@@ -65,15 +62,14 @@ export default function Film(){
             <div className="container-film">
                     {movies?.map(movie => (
                         <div className="list-film" key={movie.id}>
-                            <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt="" />
-                            <h1>{movie.title}</h1>
-                            <p>Popularitas : {Math.round(movie.popularity)}</p>
-                            <h2>Sinopsis</h2>
-                            <div className="sinopsis">
-                                <p>{movie.overview}</p>
-                            </div>
-                            <p>{new Date(movie.release_date).toLocaleDateString('id-ID',{year : 'numeric',month : 'long',day:'2-digit'})}</p>
-                            <a href={`/movie/${movie.id}`}>Detail</a>
+                            <CardFilm 
+                                filmImg={movie.poster_path} 
+                                filmTitle={movie.title} 
+                                filmPopularity={movie.popularity} 
+                                filmOverview={movie.overview} 
+                                filmTanggal={movie.release_date} 
+                                detailFilm={movie.id}
+                            />
                         </div>
                     ))}
             </div>
