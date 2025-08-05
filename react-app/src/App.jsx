@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Detailfilm from './webFilm/Detailfilm2.jsx';
 import About from './webFilm/navbar/About.jsx';
 import Navbar from './webFilm/navbar/Navbar.jsx'
-import Home from './webFilm/Home.jsx';
+import Home from './webFilm/home/Home.jsx';
 
 
 function App() {
