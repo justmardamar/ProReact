@@ -33,7 +33,7 @@ export default function Herosection(){
             <div className="hero-text">
                 <h1>{popular.original_title}</h1>
                 <p>{popular.overview}</p>
-                
+                <a href={`/movie/${popular.id}`}>Detail</a>
             </div>
         </div>
         </section>
