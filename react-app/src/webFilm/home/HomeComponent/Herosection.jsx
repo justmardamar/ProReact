@@ -1,8 +1,9 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect} from "react"
+import CardFilm from '../../componentUI/CardFilm'
 
 export default function Herosection(){
 
-    const[popular,setPopular] = useState()
+    const[populars,setPopular] = useState()
 
     //API untuk fetch data film yang populer
     const options = {
@@ -15,25 +16,33 @@ export default function Herosection(){
 
     useEffect(() => {
         const getPopular = async () => {
-            const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc')
+            const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',options)
             const data = await response.json()
-            setPopular(data.results[0])
+            setPopular(data.results)
         }
         getPopular()
-    })
+    },[])
 
     return (
         <section className="hero">
         <div className="hero-content">
-            <img
-            src={`https://image.tmdb.org/t/p/original/${popular.poster_path}`}
-            alt="Movie Poster"
-            className="hero-poster"
-            />
-            <div className="hero-text">
-                <h1>{popular.original_title}</h1>
-                <p>{popular.overview}</p>
-                <a href={`/movie/${popular.id}`}>Detail</a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {populars?.map((popular) => {
+                    <div 
+                        className="bg-white shadow-md rounded-xl overflow-hidden transition hover:shadow-lg"
+                        key={popular.id}>
+                        
+                        <CardFilm
+                            filmImg={popular.poster_path}
+                            filmTitle={popular.title}
+                            filmPopularity={popular.popularity}
+                            filmOverview={popular.overview}
+                            filmTanggal={popular.release_date}
+                            detailFilm={popular.id}
+                            
+                        />
+                    </div>
+                })}
             </div>
         </div>
         </section>
