@@ -28,7 +28,7 @@ export default function Detailfilm(){
     return(
         <>
             <a href="/" className='tombol'>Kembali</a>
-            <div className="container-detail">
+            <div className="container-detail justify-center text-center items-center">
                 <h1>{movieId?.title}</h1>
                 <img src={`https://image.tmdb.org/t/p/original/${movieId?.belongs_to_collection.poster_path}`} alt="" />
                 <p>Popularitas : {Math.round(movieId?.popularity)}</p>
