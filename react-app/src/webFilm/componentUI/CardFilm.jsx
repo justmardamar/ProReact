@@ -1,6 +1,19 @@
+import Tilt from "react-parallax-tilt";
+
 export default function CardFilm(props){
     return(
         <>
+
+        <Tilt 
+            tiltMaxAngleX={25}
+            tiltMaxAngleY={25}
+            perspective={500}
+            scale={1.05}
+            transitionSpeed={1000}
+            gyroscope={true}
+            className="rounded-lg shadow-lg bg-white overflow-hidden"
+            
+        >
             <img
                 src={`https://image.tmdb.org/t/p/original/${props.filmImg}`}
                 alt={props.filmTitle}
@@ -24,6 +37,7 @@ export default function CardFilm(props){
                 </div>
                 <a href={`/movie/${props.detailFilm}`} className="p-2 m-4 mt-2 rounded-xs bg-[rgb(92,92,247)] text-white hover:bg-white hover:text-[rgb(92,92,247)] hover:border-[rgb(92,92,247)] hover:shadow-md transition-all duration-300 ease-in-out">Detail</a>
             </div>
+        </Tilt>
         </>
     )
 }

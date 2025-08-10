@@ -27,10 +27,10 @@ export default function Detailfilm(){
 
     return(
         <>
-            <a href="/" className='tombol'>Kembali</a>
-            <div className="container-detail justify-center text-center items-center">
+            <a href="/" className='bg-white m-5 h-4'>Kembali</a>
+            <div className="container-detail justify-center text-center items-center mt-5">
                 <h1>{movieId?.title}</h1>
-                <img src={`https://image.tmdb.org/t/p/original/${movieId?.belongs_to_collection.poster_path}`} alt="" />
+                <img src={`https://image.tmdb.org/t/p/original/${movieId?.poster_path}`} className='m-auto' alt="" />
                 <p>Popularitas : {Math.round(movieId?.popularity)}</p>
                 <h2>Genre</h2>
                 <div className="genres">

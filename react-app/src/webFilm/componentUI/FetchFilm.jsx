@@ -16,6 +16,9 @@ export default function FetchFilm({
     return (
       <>
         <section className="p-6">
+          {/* Search */}
+          <SearchFilm pagination={page}/>
+
           <h2 className="text-2xl font-bold mb-6">{title}</h2>
 
           <GenreSection/>
@@ -38,9 +41,6 @@ export default function FetchFilm({
             ))}
           </div>
         </section>
-
-        {/* Search */}
-        <SearchFilm/>
 
         {/* Pagination */}
         <div className="list flex gap-2 p-6">

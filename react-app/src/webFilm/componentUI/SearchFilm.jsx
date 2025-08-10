@@ -1,8 +1,12 @@
 import React,{useState,useEffect} from "react";
+import CardFilm from "./CardFilm";
 
-export default function SearchFilm(){
+export default function SearchFilm({
+    pagination
+}){
     
-    const [film,setFilm] = useState()
+    const [films,setFilm] = useState()
+    const [search,setSearch] = useState('')
 
     const options = {
         method: 'GET',
@@ -12,26 +16,54 @@ export default function SearchFilm(){
         }
     };
 
+
+
     useEffect(() => {
-        const getFilm = async () => {
-            const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&page=${pagination}&language=en-US`, options)
-            const data = await response.json()
-            console.log(data)
+        if(search === ''){
+            setFilm([])
+            return
         }
-        getFilm()
-    },[search])
+        else{
+            const getFilm = async () => {
+                const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=true&page=${pagination}&language=en-US`, options)
+                const data = await response.json()
+                console.log(data)
+                setFilm(data.results)
+            }
+            getFilm()
+        }
+    },[search,pagination])
 
 
     return(<>
         <div className="content p-6">
-          <h1>Halaman {page}</h1>
+          <h1>Halaman {pagination}</h1>
           <input
             type="text"
-            onChange={(e) => Search(e.target.value)}
+            onChange={(e) => setSearch(e.target.value.trim())}
             className="border p-2 rounded w-full max-w-sm"
             placeholder="Cari film..."
           />
         </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-3 mb-3">
+            {films?.map((film) => (
+                <div 
+                    className="bg-white shadow-md rounded-xl overflow-hidden transition hover:shadow-lg"
+                    key={film.id}
+                >
+                    <CardFilm
+                        filmImg={film.poster_path}
+                        filmTitle={film.title}
+                        filmPopularity={film.popularity}
+                        filmOverview={film.overview}
+                        filmTanggal={film.release_date}
+                        detailFilm={film.id}
+                    />
+                </div>
+            ))}
+        </div>
+
+
     </>)
 
 }
