@@ -5,6 +5,7 @@ import Detailfilm from './webFilm/Detailfilm2.jsx';
 import About from './webFilm/navbar/About.jsx';
 import Navbar from './webFilm/navbar/Navbar.jsx'
 import Home from './webFilm/home/Home.jsx';
+import FilmGenre from './webFilm/FilmGenre.jsx';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/film" element={<Film/> } />
             <Route path='/about' element={<About/>}/>
             <Route path="/movie/:id" element={<Detailfilm />} />
+            <Route path='/genre/:id/:name' element={<FilmGenre/>}/>
           </Routes>
         </Router>
     </>

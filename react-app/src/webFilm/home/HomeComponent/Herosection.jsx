@@ -42,7 +42,7 @@ export default function Herosection(){
                                     filmOverview={popular.overview}
                                     filmTanggal={popular.release_date}
                                     detailFilm={popular.id}
-                                    
+
                                 />
                             </div>
                         ))}
