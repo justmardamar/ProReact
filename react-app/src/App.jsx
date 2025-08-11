@@ -6,14 +6,14 @@ import About from './webFilm/navbar/About.jsx';
 import Navbar from './webFilm/navbar/Navbar.jsx'
 import Home from './webFilm/home/Home.jsx';
 import FilmGenre from './webFilm/FilmGenre.jsx';
-
+import Account from './chat/Account.jsx';
 
 function App() {
 
   return (
     <>
         {/* <ApiWeather/> */}
-        <Router>
+        {/* <Router>
           <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>}/>
@@ -22,7 +22,8 @@ function App() {
             <Route path="/movie/:id" element={<Detailfilm />} />
             <Route path='/genre/:id/:name' element={<FilmGenre/>}/>
           </Routes>
-        </Router>
+        </Router> */}
+        <Account/>
     </>
   )
 }
