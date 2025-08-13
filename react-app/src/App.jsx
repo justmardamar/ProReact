@@ -7,6 +7,8 @@ import Navbar from './webFilm/navbar/Navbar.jsx'
 import Home from './webFilm/home/Home.jsx';
 import FilmGenre from './webFilm/FilmGenre.jsx';
 import Account from './chat/Account.jsx';
+import Login from './chat/Auth/Login.jsx';
+import Register from './chat/Auth/Register.jsx';
 
 function App() {
 
@@ -23,7 +25,13 @@ function App() {
             <Route path='/genre/:id/:name' element={<FilmGenre/>}/>
           </Routes>
         </Router> */}
-        <Account/>
+        <Router>
+          <Routes>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
+            <Route path='/home' element={<Account/>}/>
+          </Routes>
+        </Router>
     </>
   )
 }
