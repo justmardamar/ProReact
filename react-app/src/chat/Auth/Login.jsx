@@ -2,7 +2,7 @@ import { supabase } from "../Data";
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login(){
+export default function Login({setToken}){
 
     const navigate = useNavigate()
 
@@ -10,6 +10,7 @@ export default function Login(){
         email : '',
         password : ''
     })
+
 
     function handleLogin(e){
         setLogin({
@@ -24,32 +25,37 @@ export default function Login(){
         if(!login.email || !login.password){
             alert('Harus di isi')
             navigate('/login')
+            return
         }
 
-        const { data, error } = await supabase.auth.signUp({
-            email: login.email,
-            password: login.password,
-        })
-        
-        if(data.user){
+        try{
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: login.email,
+                password: login.password,
+            })
+            if(error) throw error
             console.log(data)
-            alert('login berhasil')
+            setToken(data)
             navigate('/home')
 
-        }else if(error){
-            console.log(`Ada yang salah ${error.message}`)
-            alert('login gagal')
+        }catch(error){
+            console.log(error)
         }
     } 
     return(
-        <form onSubmit={loginForm}>
-            <label htmlFor="email">Email : </label>
-            <input type="email" name="email" value={login.email} onChange={handleLogin} />
+        <div className="justify-center items-center flex min-h-screen">
+            <div className="p-4 shadow-xl bg-white text-slate-600 h-100 w-100 rounded-2xl">
+                <h1 className="mb-8 mt-4 text-center font-medium">LOGIN</h1>
+                <form onSubmit={loginForm} className="flex flex-col">
+                    <label htmlFor="email" className="mb-4">Email : </label>
+                    <input type="email" name="email" className="mb-6 border border-slate-600 rounded-lg p-2" value={login.email} onChange={handleLogin} />
 
-            <label htmlFor="password">Passwrod : </label>
-            <input type="password" name="password" value={login.password} onChange={handleLogin} />\
+                    <label htmlFor="password" className="mb-4">Passwrod : </label>
+                    <input type="password" name="password" className="mb-6 border border-slate-600 rounded-lg p-2" value={login.password} onChange={handleLogin} />
 
-            <button type="submit">Login</button>
-        </form>
+                    <button type="submit" className="border border-slate-600 w-25 p-2 rounded-lg">Login</button>
+                </form>
+            </div>
+        </div>
     )
 }

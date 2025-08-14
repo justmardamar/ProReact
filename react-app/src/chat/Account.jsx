@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../chat/Data'
 
-export default function Account() {
+export default function Account({token}) {
     const [getUserv,setUser] = useState()
     const [create,setCreate] = useState({
         name : '',
@@ -103,6 +103,7 @@ export default function Account() {
 
     return(
         <>
+            <h1>Selamat Datang {token?.user.user_metadata.name}</h1>
             <table className='table-auto'>
                 <thead>
                     <tr>

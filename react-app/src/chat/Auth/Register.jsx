@@ -44,38 +44,41 @@ export default function Register(){
 
         if(!validate())return
 
-        const { data, error } = await supabase
-        .from('User')
-        .insert({ 
-            name: register.name,
+        const { data, error } = await supabase.auth.signUp({ 
             email: register.email,
-            password : register.password
+            password : register.password,
+            options : {
+                data : {
+                    name : register.name
+                }
+            }
         })
 
+
         if(error){
-            alert(`Terdapat error ${error}`)
+            alert('Check your email for verification link')
         }else{
             alert('Akun telah dibuat')
-            navigate('/login')
+            navigate('/')
         }
     }
 
     return(
-        <form onSubmit={createUser} className='m-4'>
+        <form onSubmit={registerForm} className='m-4'>
             <h1 className='text-center'>Create</h1>
             <div className="flex-row">
                 <div className="w-2xs">
                     <label htmlFor="name">Name : </label>
-                    <input type="text" name='name' className="border-2" value={create.name} onChange={handleCreate}/>
+                    <input type="text" name='name' className="border-2" value={register.name} onChange={handleRegister}/>
                 </div>
                 <div className="w-2xs">
                     <label htmlFor="email">Email :</label>
-                    <input type="email" name='email' className="border-2" value={create.email} onChange={handleCreate}/>
+                    <input type="email" name='email' className="border-2" value={register.email} onChange={handleRegister}/>
                 </div>
 
                 <div className="w-2xs">
                     <label htmlFor="password">Password : </label>
-                    <input type="password" name='password' className="border-2" value={create.password} onChange={handleCreate}/>
+                    <input type="password" name='password' className="border-2" value={register.password} onChange={handleRegister}/>
                 </div>
             </div>
             <button type='submit' className='border-2' >Kirim</button>
