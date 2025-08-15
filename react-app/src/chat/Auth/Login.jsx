@@ -29,15 +29,10 @@ export default function Login({setToken}){
         }
 
         try{
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: login.email,
-                password: login.password,
-            })
-            if(error) throw error
-            console.log(data)
-            setToken(data)
-            navigate('/home')
-
+            const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('name', 'Leia')
         }catch(error){
             console.log(error)
         }

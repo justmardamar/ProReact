@@ -8,7 +8,8 @@ export default function Register(){
     const [register,setRegister] = useState({
         name : '',
         email : '',
-        password : ''
+        password : '',
+        status : false
     })
 
     function handleRegister(e){
@@ -44,23 +45,20 @@ export default function Register(){
 
         if(!validate())return
 
-        const { data, error } = await supabase.auth.signUp({ 
-            email: register.email,
-            password : register.password,
-            options : {
-                data : {
-                    name : register.name
-                }
-            }
-        })
-
-
-        if(error){
-            alert('Check your email for verification link')
-        }else{
-            alert('Akun telah dibuat')
-            navigate('/')
+        try{
+            const { error } = await supabase
+            .from('Users')
+            .insert({ 
+                name: register.name,
+                email : register.name,
+                password : register.password,
+                status : register.status,
+            })
+            alert('Akun berhasil di buat')
+        }catch(error){
+            alert('error')
         }
+
     }
 
     return(
