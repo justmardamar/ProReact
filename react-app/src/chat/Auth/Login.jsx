@@ -2,7 +2,7 @@ import { supabase } from "../Data";
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({setToken}){
+export default function Login(){
 
     const navigate = useNavigate()
 
@@ -32,7 +32,10 @@ export default function Login({setToken}){
             const { data, error } = await supabase
             .from('users')
             .select()
-            .eq('name', 'Leia')
+            .eq('email' , login.email)
+
+            console.log(data)
+
         }catch(error){
             console.log(error)
         }

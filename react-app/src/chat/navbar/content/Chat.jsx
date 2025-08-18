@@ -1,7 +1,7 @@
 import { supabase } from "../../Data"
 import { useNavigate } from "react-router-dom"
 
-export default function Chat({token}){
+export default function Chat(){
 
     const navigate = useNavigate()
 

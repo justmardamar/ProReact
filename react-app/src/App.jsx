@@ -1,17 +1,17 @@
 // import ApiWeather from './ApiWather.jsx'
 // import Film from './webFilm/Film.jsx'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import Detailfilm from './webFilm/Detailfilm2.jsx';
 // import About from './webFilm/navbar/About.jsx';
 // import Navbar from './webFilm/navbar/Navbar.jsx'
 // import Home from './webFilm/home/Home.jsx';
 // import FilmGenre from './webFilm/FilmGenre.jsx';
-import Account from './chat/Account.jsx';
-import Login from './chat/Auth/Login.jsx';
-import SignIn from './chat/Auth/SignIn.jsx';
-import NavbarChat from './chat/navbar/NavbarChat.jsx';
-import Chat from './chat/navbar/content/Chat.jsx';
-import AddConvertation from './chat/feature/AddConvertation.jsx';
+// import Account from './chat/Account.jsx';
+// import Login from './chat/Auth/Login.jsx';
+// import SignIn from './chat/Auth/SignIn.jsx';
+// import NavbarChat from './chat/navbar/NavbarChat.jsx';
+// import Chat from './chat/navbar/content/Chat.jsx';
+// import AddConvertation from './chat/feature/AddConvertation.jsx';
 
 function App() {
 
@@ -34,16 +34,16 @@ function App() {
 
 
         {/* chat */}
-        <Router>
+        {/* <Router>
           <NavbarChat/>
           <Routes>
-            <Route path='/' element={<Login setToken={setToken}/>}/>
-            <Route path='/home' element={<Chat token={token} />}/>
+            <Route path='/' element={<Login />}/>
+            <Route path='/home' element={<Chat />}/>
             <Route path='/SignUp' element={<SignIn/>}/>
             <Route path='/chat' element={<Account/>}/>
-            <Route path='/add' element={<AddConvertation/>}/>
           </Routes>
-        </Router>
+        </Router> */}
+        
     </>
   )
 }

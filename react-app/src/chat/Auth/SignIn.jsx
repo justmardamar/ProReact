@@ -50,11 +50,12 @@ export default function Register(){
             .from('Users')
             .insert({ 
                 name: register.name,
-                email : register.name,
+                email : register.email,
                 password : register.password,
                 status : register.status,
             })
             alert('Akun berhasil di buat')
+            navigate('/')
         }catch(error){
             alert('error')
         }
